@@ -7,7 +7,7 @@ import { AuthLayout } from "../layout/AuthLayout"
 export const LoginPage = () => {
     return (
 
-        <AuthLayout title='login'>
+        <AuthLayout title='Iniciar Sesión'>
             <form>
                 <Grid container>
                     <Grid item xs={12} sx={{ mt: 2 }} >
@@ -33,7 +33,7 @@ export const LoginPage = () => {
                         <Button
                             variant="contained"
                             fullWidth>
-                            Login
+                            Iniciar sesion
                         </Button>
                     </Grid>
 
