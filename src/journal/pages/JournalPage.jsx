@@ -1,10 +1,12 @@
-
+import { JournalLayout } from "../layout/JournalLayout"
+import { Typography } from "@mui/material"
 
 export const JournalPage = () => {
     return (
-        <>
-            <h1>Journal Page</h1>
+        <JournalLayout>
 
-        </>
+            <Typography>Journal Page</Typography>
+
+        </JournalLayout>
     )
 }
