@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom"
-import { Button, Grid, Link, TextField, Typography } from "@mui/material"
+import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material"
 import { AuthLayout } from "../layout/AuthLayout"
 import { useForm } from "../../hooks";
 import { startRegisteringUser } from "../../store/auth";
@@ -19,17 +19,22 @@ const formValidations = {
 
 export const RegisterPage = () => {
     const dispatch = useDispatch();
-    
-    const [isFormSubmitted, setIsFormSubmitted] = useState(false)
+
+    const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+    const { status, errorMessage } = useSelector(state => state.auth);
+    console.log(errorMessage);
+    const isCheckingAuthentication = useMemo(() => status === 'checking', [status]);
+
     const { onInputChange, email, password, displayName, formState,
-        emailValid, displayNameValid, passwordValid, isFormValid} = useForm(formData, formValidations);
-    
+        emailValid, displayNameValid, passwordValid, isFormValid } = useForm(formData, formValidations);
+
 
     const onSubmit = (e) => {
         e.preventDefault();
 
         setIsFormSubmitted(true);
-        if(!isFormValid) return;
+        if (!isFormValid) return;
 
         dispatch(startRegisteringUser(formState));
     }
@@ -81,11 +86,19 @@ export const RegisterPage = () => {
                 </Grid>
 
                 <Grid container spacing={2} sx={{ my: 2 }}>
+
+                    <Grid item
+                        xs={12}
+                        display={!!errorMessage ? '' : 'none'}>
+                        <Alert severity="error">{errorMessage}</Alert>
+                    </Grid>
+
                     <Grid item xs={12} >
                         <Button
                             type="submit"
                             variant="contained"
-                            fullWidth>
+                            fullWidth
+                            disabled={isCheckingAuthentication}>
                             Crear cuenta
                         </Button>
                     </Grid>
