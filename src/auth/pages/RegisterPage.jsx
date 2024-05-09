@@ -23,7 +23,7 @@ export const RegisterPage = () => {
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
     const { status, errorMessage } = useSelector(state => state.auth);
-    console.log(errorMessage);
+
     const isCheckingAuthentication = useMemo(() => status === 'checking', [status]);
 
     const { onInputChange, email, password, displayName, formState,
