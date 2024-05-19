@@ -15,6 +15,12 @@ export const NoteList = ({ id, title, body, date, imageUrls = [] }) => {
             : title
     }, [title]);
 
+    const newBody = useMemo(() => {
+        return body.length > 15
+            ? body.substring(0, 15) + '...'
+            : body
+    }, [body]);
+
     const onClickNote = () => {
         dispatch(setActiveNote({id, title, body, date, imageUrls }))
     }
@@ -27,7 +33,7 @@ export const NoteList = ({ id, title, body, date, imageUrls = [] }) => {
                 </ListItemIcon>
                 <Grid container>
                     <ListItemText primary={newTitle} />
-                    <ListItemText secondary={body} />
+                    <ListItemText secondary={newBody} />
                 </Grid>
             </ListItemButton>
         </ListItem>
