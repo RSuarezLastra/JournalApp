@@ -4,7 +4,7 @@ import { useForm } from "../../hooks";
 import { Grid, Typography, Button, TextField, IconButton } from "@mui/material"
 import { SaveOutlined, UploadFile } from "@mui/icons-material"
 import { ImageGallery } from "../components"
-import { setActiveNote, startSaveNote } from "../../store/journal";
+import { setActiveNote, startSaveNote, startUploadingFiles } from "../../store/journal";
 import Swal from "sweetalert2";
 
 export const NoteView = () => {
@@ -39,7 +39,7 @@ export const NoteView = () => {
     const onInputFileChange = ({ target }) => {
         if (target.files === 0) return;
 
-        console.log('Subiendo archivos....', target.files);
+        dispatch(startUploadingFiles(target.files));
     }
 
     return (
@@ -64,9 +64,10 @@ export const NoteView = () => {
                     style={{ display: 'none' }}
                 />
 
-                <IconButton 
-                color="primary" 
-                onClick={() => fileInputRef.current.click()}
+                <IconButton
+                    color="primary"
+                    disabled={isSaving}
+                    onClick={() => fileInputRef.current.click()}
                 >
                     <UploadFile />
                 </IconButton>
