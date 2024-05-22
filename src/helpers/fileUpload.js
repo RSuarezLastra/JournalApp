@@ -15,7 +15,6 @@ export const fileUpload = async (file) => {
             body: formData
         });
 
-        console.log(resp);
         if (!resp.ok) throw new Error('Error al subir la imagen');
 
         const cloudResp = await resp.json();
