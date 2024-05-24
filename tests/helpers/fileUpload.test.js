@@ -1,5 +1,12 @@
-import { fileUpload } from "../../src/helpers";
+import {v2 as cloudinary } from 'cloudinary';
+import { fileUpload } from '../../src/helpers';
 
+cloudinary.config({
+    cloud_name: 'dlpkcfukn',
+    api_key: '895787712289597',
+    api_secret: 'Dn6WlfuGv8Wh4A4aqO4X7_Y6H08',
+    secure: true
+})
 
 describe('Pruebas en fileUpload', () => {
 
@@ -12,9 +19,15 @@ describe('Pruebas en fileUpload', () => {
         const file = new File([blob], 'fotoPrueba.jpg');
 
         const url = await fileUpload(file);
-        expect(typeof url).toBe('string')
+        expect(typeof url).toBe('string');
+
+        const parts = url.split('/');
+        const imageId = parts[ parts.length - 1].replace('.jpg', '');
+
+        const cloudRes = await cloudinary.api.delete_resources(['journal/' + imageId]);
+        console.log(cloudRes);
     });
-    
+
     test('debe retornar null si no hay un archivo', async () => {
 
         const file = new File([], 'fotoPrueba.jpg');
