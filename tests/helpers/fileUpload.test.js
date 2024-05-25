@@ -25,7 +25,7 @@ describe('Pruebas en fileUpload', () => {
         const imageId = parts[ parts.length - 1].replace('.jpg', '');
 
         const cloudRes = await cloudinary.api.delete_resources(['journal/' + imageId]);
-        console.log(cloudRes);
+        
     });
 
     test('debe retornar null si no hay un archivo', async () => {
