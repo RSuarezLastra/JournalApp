@@ -26,7 +26,7 @@ export const startRegisteringUser = ({ email, password, displayName }) => {
         dispatch(checkingCredentials());
 
         const result = await registerUserWithEmailPassword({ email, password, displayName })
-
+        console.log(result);
         if (!result.ok) return dispatch(logout(result));
 
         dispatch(login(result));
