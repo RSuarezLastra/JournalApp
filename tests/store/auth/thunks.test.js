@@ -1,4 +1,4 @@
-import { loginWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, singInWithGoogle } from "../../../src/firebase/providers";
+import { loginWithEmailPassword, logoutFirebase, singInWithGoogle } from "../../../src/firebase/providers";
 import { checkingAuthentication, checkingCredentials, login, logout, startGoogleSignIn, startLoginWithEmailPassword, startLogout, startRegisteringUser } from "../../../src/store/auth";
 import { clearNotesLogout } from "../../../src/store/journal";
 import { demoUser } from '../../fixtures/authFixtures';
