@@ -39,5 +39,5 @@ describe('Pruebas en journal Thunks', () => {
         await Promise.all(deletePromises);
 
 
-    }); 
+    }, 10000 ); 
 })
