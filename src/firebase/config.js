@@ -35,7 +35,7 @@ const firebaseConfig = {
     appId: VITE_APPID
 };
 
-console.log(firebaseConfig);
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
